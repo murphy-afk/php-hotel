@@ -43,24 +43,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>PHP HOTELS</title>
 </head>
 
 <body>
-    <h1>Hotels</h1>
-    <ul>
-        <?php 
+    <div class="container">
+        <h1 class="py-3">Hotels</h1>
+        <form action="index.php" method="GET">
+            <div class="form-check">
+                <label class="form-check-label" for="parking">
+                    With parking
+                </label>
+                <input class="form-check-input" type="checkbox" name='parking' id="parking">
+            </div>
+            <button>Filter</button>
+        </form>
+        <?php
+        $parkingFilter = $_GET['parking'] ?? 'off';
+        ?>
+
+        <ul class="list-group">
+            <?php
             foreach ($hotels as $hotel) {
-                echo '<li>'; 
-                foreach ($hotel as $key => $value) {
-                    echo  $key . " - " . $value;
-                } 
+                echo '<li class="list-group-item">';
+                if ($parkingFilter == 'on') {
+                    if ($hotel['parking'] == true) {
+                        foreach ($hotel as $key => $value) {
+                            echo $key . " : " . $value . '<br>';
+                        }
+                    }
+                } else {
+                    foreach ($hotel as $key => $value) {
+                        echo $key . " : " . $value . '<br>';
+                    }
+                }
                 echo '</li>';
             }
-        ?>
-    </ul>
-    
+            ?>
+        </ul>
+
+    </div>
+
 </body>
 
 </html>
