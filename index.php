@@ -58,10 +58,23 @@
                 </label>
                 <input class="form-check-input" type="checkbox" name='parking' id="parking">
             </div>
+            <div class="form-select">
+                <label for="rating" class="form-label">Rating</label>
+                <select name="rating" id="rating">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+            </div>
             <button>Filter</button>
         </form>
         <?php
         $parkingFilter = $_GET['parking'] ?? 'off';
+        $ratingFilter = $_GET['rating'];
         ?>
 
         <ul class="list-group">
@@ -69,7 +82,7 @@
             foreach ($hotels as $hotel) {
                 echo '<li class="list-group-item">';
                 if ($parkingFilter == 'on') {
-                    if ($hotel['parking'] == true) {
+                    if ($hotel['parking'] == true && $hotel['vote'] >= $ratingFilter) {
                         foreach ($hotel as $key => $value) {
                             echo $key . " : " . $value . '<br>';
                         }
