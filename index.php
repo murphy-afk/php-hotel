@@ -48,9 +48,19 @@
 </head>
 
 <body>
-    <?php
-    var_dump($hotels);
-    ?>
+    <h1>Hotels</h1>
+    <ul>
+        <?php 
+            foreach ($hotels as $hotel) {
+                echo '<li>'; 
+                foreach ($hotel as $key => $value) {
+                    echo  $key . " - " . $value;
+                } 
+                echo '</li>';
+            }
+        ?>
+    </ul>
+    
 </body>
 
 </html>
