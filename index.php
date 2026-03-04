@@ -51,48 +51,48 @@
 <body>
     <div class="container">
         <h1 class="py-3">Hotels</h1>
-        <form action="index.php" method="GET">
-            <div class="form-check">
-                <label class="form-check-label" for="parking">
-                    With parking
-                </label>
-                <input class="form-check-input" type="checkbox" name='parking' id="parking">
+        <form action="index.php" method="GET" class="mb-4">
+            <div class="d-flex align-items-center">
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="parking" id="parking">
+                    <label class="form-check-label" for="parking"> With parking </label>
+                </div>
+                <div class="mb-3 ms-3">
+                    <select name="rating" id="rating" class="form-select w-auto">
+                        <option value="0">Rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-select">
-                <label for="rating" class="form-label">Rating</label>
-                <select name="rating" id="rating">
-                    <option value="0"></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-
-            </div>
-            <button>Filter</button>
+            <button class="btn btn-primary">Filter</button>
         </form>
         <?php
         $parkingFilter = $_GET['parking'] ?? 'off';
         $ratingFilter = $_GET['rating'];
         ?>
 
-        <ul class="list-group">
+        <ul class="list-group mb-4">
             <?php
             foreach ($hotels as $hotel) {
-                echo '<li class="list-group-item">';
                 if ($parkingFilter == 'on') {
                     if ($hotel['parking'] == true && $hotel['vote'] >= $ratingFilter) {
+                        echo '<li class="list-group-item">';
                         foreach ($hotel as $key => $value) {
-                            echo $key . " : " . $value . '<br>';
+                            echo '<b>' . $key . "</b> : " . $value . '<br>';
                         }
+                        echo '</li>';
                     }
                 } else {
+                    echo '<li class="list-group-item">';
                     foreach ($hotel as $key => $value) {
-                        echo $key . " : " . $value . '<br>';
+                        echo '<b>' . $key . "</b> : " . $value . '<br>';
                     }
+                    echo '</li>';
                 }
-                echo '</li>';
             }
             ?>
         </ul>
