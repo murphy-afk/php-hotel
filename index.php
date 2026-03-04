@@ -81,16 +81,22 @@
                 if ($parkingFilter == 'on') {
                     if ($hotel['parking'] == true && $hotel['vote'] >= $ratingFilter) {
                         echo '<li class="list-group-item">';
-                        foreach ($hotel as $key => $value) {
-                            echo '<b>' . $key . "</b> : " . $value . '<br>';
-                        }
+                        echo '<b>Name</b>: ' . $hotel['name'] . '<br>';
+                        echo '<b>Description</b>: ' . $hotel['description'] . '<br>';
+                        $parkingDesc = $hotel['parking'] ? 'available' : 'unavailable';
+                        echo '<b>Parking</b>: ' . $parkingDesc . '<br>';
+                        echo '<b>Vote</b>: ' . $hotel['vote'] . '&star;<br>';
+                        echo '<b>Distance from center</b>: ' . $hotel['distance_to_center'] . ' km<br>';
                         echo '</li>';
                     }
                 } else {
                     echo '<li class="list-group-item">';
-                    foreach ($hotel as $key => $value) {
-                        echo '<b>' . $key . "</b> : " . $value . '<br>';
-                    }
+                    echo '<b>Name</b>: ' . $hotel['name'] . '<br>';
+                    echo '<b>Description</b>: ' . $hotel['description'] . '<br>';
+                    $parkingDesc = $hotel['parking'] ? 'available' : 'unavailable';
+                    echo '<b>Parking</b>: ' . $parkingDesc . '<br>';
+                    echo '<b>Vote</b>: ' . $hotel['vote'] . '&star;<br>';
+                    echo '<b>Distance from center</b>: ' . $hotel['distance_to_center'] . ' km<br>';
                     echo '</li>';
                 }
             }
