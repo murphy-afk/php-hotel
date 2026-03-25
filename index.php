@@ -51,6 +51,9 @@
 <body>
     <div class="container">
         <h1 class="py-3">Hotels</h1>
+        <p>
+            <?php var_dump($hotels) ?> 
+        </p>
         <form action="index.php" method="GET" class="mb-4">
             <div class="d-flex align-items-center">
                 <div class="form-check mb-3">
@@ -72,7 +75,7 @@
         </form>
         <?php
         $parkingFilter = $_GET['parking'] ?? 'off';
-        $ratingFilter = $_GET['rating'];
+        $ratingFilter = $_GET['rating'] ?? 0;
         ?>
 
         <ul class="list-group mb-4">
